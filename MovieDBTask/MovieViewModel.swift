@@ -38,18 +38,18 @@ extension MovieViewModel {
     func getMovies(_ value:Int, completion:@escaping ()->()) {
         DispatchQueue.main.async { [weak self] in
             self?.cancellationToken = MovieDB.request(value == 0 ? .popular : .topRated) // 4
-                .mapError({ (error) -> Error in // 5
+                .mapError({ (error) -> Error in
                     print(error)
                     return error
                 })
-                .sink(receiveCompletion: { _ in }, // 6
+                .sink(receiveCompletion: { _ in },
                       receiveValue: {
                         self?.movies = $0.movies
-                        completion()// 7
+                        MovieList.insertFeeds(self?.movies ?? [], pageValue: self?.currentPage ?? 1)
+                        completion()
                       })
         }
     }
-    
 }
 
 

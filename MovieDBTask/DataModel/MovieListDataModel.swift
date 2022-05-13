@@ -18,7 +18,7 @@ struct MovieResponse: Codable {
 struct Movie: Codable, Identifiable {
     
     var id = UUID()
-    let movieId: Int
+    let movieId: Int?
     let title: String
     let date: String
     let imagePath: String

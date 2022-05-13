@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18102FC9282EA0BF000FBA7B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18102FC8282EA0BF000FBA7B /* CoreDataStack.swift */; };
+		18102FCB282EA0C9000FBA7B /* CoreDataBaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18102FCA282EA0C9000FBA7B /* CoreDataBaseHandler.swift */; };
+		18102FDE282EA683000FBA7B /* MovieList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18102FDC282EA683000FBA7B /* MovieList+CoreDataClass.swift */; };
+		18102FDF282EA683000FBA7B /* MovieList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18102FDD282EA683000FBA7B /* MovieList+CoreDataProperties.swift */; };
 		F821D734282E44000008AD1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821D733282E44000008AD1E /* AppDelegate.swift */; };
 		F821D736282E44000008AD1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821D735282E44000008AD1E /* SceneDelegate.swift */; };
 		F821D738282E44000008AD1E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821D737282E44000008AD1E /* HomeView.swift */; };
@@ -44,6 +48,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18102FC8282EA0BF000FBA7B /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		18102FCA282EA0C9000FBA7B /* CoreDataBaseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataBaseHandler.swift; sourceTree = "<group>"; };
+		18102FDC282EA683000FBA7B /* MovieList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieList+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		18102FDD282EA683000FBA7B /* MovieList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieList+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		18102FE5282EA893000FBA7B /* GrassDoorTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GrassDoorTask.xcdatamodel; sourceTree = "<group>"; };
 		F821D730282E44000008AD1E /* MovieDBTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieDBTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F821D733282E44000008AD1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F821D735282E44000008AD1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +103,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18102FC4282EA032000FBA7B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F821D770282E57BF0008AD1E /* RandomAccess+Extensions.swift */,
+				F821D76C282E52770008AD1E /* ImageDownloader.swift */,
+				F821D772282E5C0C0008AD1E /* Utilities.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		18102FC5282EA04E000FBA7B /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				F821D763282E44500008AD1E /* MovieListDataModel.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		18102FC6282EA06A000FBA7B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F821D767282E449C0008AD1E /* APIClient.swift */,
+				F821D769282E44BB0008AD1E /* MovieDBAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		18102FC7282EA089000FBA7B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				18102FDC282EA683000FBA7B /* MovieList+CoreDataClass.swift */,
+				18102FDD282EA683000FBA7B /* MovieList+CoreDataProperties.swift */,
+				18102FCA282EA0C9000FBA7B /* CoreDataBaseHandler.swift */,
+				18102FC8282EA0BF000FBA7B /* CoreDataStack.swift */,
+				18102FE4282EA893000FBA7B /* GrassDoorTask.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		F821D727282E44000008AD1E = {
 			isa = PBXGroup;
 			children = (
@@ -123,12 +171,10 @@
 				F821D774282E60B00008AD1E /* MovieDetailsView.swift */,
 				F821D765282E447F0008AD1E /* MovieViewModel.swift */,
 				F821D76E282E53100008AD1E /* ImageView.swift */,
-				F821D767282E449C0008AD1E /* APIClient.swift */,
-				F821D769282E44BB0008AD1E /* MovieDBAPI.swift */,
-				F821D770282E57BF0008AD1E /* RandomAccess+Extensions.swift */,
-				F821D763282E44500008AD1E /* MovieListDataModel.swift */,
-				F821D76C282E52770008AD1E /* ImageDownloader.swift */,
-				F821D772282E5C0C0008AD1E /* Utilities.swift */,
+				18102FC6282EA06A000FBA7B /* Network */,
+				18102FC5282EA04E000FBA7B /* DataModel */,
+				18102FC4282EA032000FBA7B /* Common */,
+				18102FC7282EA089000FBA7B /* CoreData */,
 				F821D739282E44010008AD1E /* Assets.xcassets */,
 				F821D73E282E44010008AD1E /* LaunchScreen.storyboard */,
 				F821D741282E44010008AD1E /* Info.plist */,
@@ -295,16 +341,20 @@
 			files = (
 				F821D734282E44000008AD1E /* AppDelegate.swift in Sources */,
 				F821D736282E44000008AD1E /* SceneDelegate.swift in Sources */,
+				18102FCB282EA0C9000FBA7B /* CoreDataBaseHandler.swift in Sources */,
 				F821D773282E5C0C0008AD1E /* Utilities.swift in Sources */,
+				18102FDF282EA683000FBA7B /* MovieList+CoreDataProperties.swift in Sources */,
 				F821D76D282E52770008AD1E /* ImageDownloader.swift in Sources */,
 				F821D764282E44500008AD1E /* MovieListDataModel.swift in Sources */,
 				F821D771282E57BF0008AD1E /* RandomAccess+Extensions.swift in Sources */,
 				F821D775282E60B00008AD1E /* MovieDetailsView.swift in Sources */,
+				18102FDE282EA683000FBA7B /* MovieList+CoreDataClass.swift in Sources */,
 				F821D738282E44000008AD1E /* HomeView.swift in Sources */,
 				F821D76A282E44BB0008AD1E /* MovieDBAPI.swift in Sources */,
 				F821D76F282E53100008AD1E /* ImageView.swift in Sources */,
 				F821D76B282E470F0008AD1E /* MovieViewModel.swift in Sources */,
 				F821D768282E449C0008AD1E /* APIClient.swift in Sources */,
+				18102FC9282EA0BF000FBA7B /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +679,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		18102FE4282EA893000FBA7B /* GrassDoorTask.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18102FE5282EA893000FBA7B /* GrassDoorTask.xcdatamodel */,
+			);
+			currentVersion = 18102FE5282EA893000FBA7B /* GrassDoorTask.xcdatamodel */;
+			path = GrassDoorTask.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F821D728282E44000008AD1E /* Project object */;
 }
