@@ -17,8 +17,11 @@ class MovieViewModel: ObservableObject {
     
     var cancellationToken: AnyCancellable? // 2
     init() {
-        getMovies(0) {
-            
+        if Reachability.isConnectedToNetwork(){
+            getMovies(0) {
+            }
+        } else {
+            fetchFromLocalDB(selection: 0)
         }
     }
     
@@ -31,10 +34,17 @@ class MovieViewModel: ObservableObject {
             }
         }
     }
+    
+    func fetchFromLocalDB(selection: Int) {
+        DispatchQueue.main.async {
+            self.movies =  MovieItems.fetchFeedsWithUserID(pageNo: self.currentPage, type: selection == 0 ? "popular" : "topRated")
+        }
+    }
 }
 
 extension MovieViewModel {
     // Subscriber implementation
+    
     func getMovies(_ value:Int, completion:@escaping ()->()) {
         DispatchQueue.main.async { [weak self] in
             self?.cancellationToken = MovieDB.request(value == 0 ? .popular : .topRated) // 4
@@ -45,7 +55,7 @@ extension MovieViewModel {
                 .sink(receiveCompletion: { _ in },
                       receiveValue: {
                         self?.movies = $0.movies
-                        MovieList.insertFeeds(self?.movies ?? [], pageValue: self?.currentPage ?? 1)
+                        MovieItems.insertFeeds(self?.movies ?? [], pageValue: self?.currentPage ?? 1, type: value == 0 ? "popular" : "topRated")
                         completion()
                       })
         }

@@ -8,30 +8,41 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var push = false
+    
     @State private var selection = 0 //selected page
     let dataModel = ["Popular", "Top Rating"]
     
     var body: some View {
         if #available(iOS 14.0, *) {
-            VStack {
-                //ScrollableTabView
-                ScrollView(.horizontal, showsIndicators: false, content: {
-                    ScrollViewReader { scrollReader in
-                        ScrollableTabView(activeIdx: $selection,dataSet: dataModel)
-                            .padding(.top).onChange(of: selection, perform: { value in
-                                withAnimation{
-                                    scrollReader.scrollTo(value, anchor: .center)
-                                }
-                            })
+            if !push {
+                VStack {
+                    //ScrollableTabView
+                    ScrollView(.horizontal, showsIndicators: false, content: {
+                        ScrollViewReader { scrollReader in
+                            ScrollableTabView(activeIdx: $selection,dataSet: dataModel)
+                                .padding(.top).onChange(of: selection, perform: { value in
+                                    withAnimation{
+                                        scrollReader.scrollTo(value, anchor: .center)
+                                    }
+                                })
+                        }
+                    })
+                    //Page View
+                    LazyHStack {
+                        PageView(selection: $selection, dataModel: dataModel, push: $push)
                     }
+                }.onChange(of: selection, perform: { value in
+                 
                 })
-                //Page View
-                LazyHStack {
-                    PageView(selection: $selection, dataModel: dataModel)
-                }
-            }.onChange(of: selection, perform: { value in
-             
-            })
+
+            }
+            
+            if push {
+                MovieDetailsView(push: $push)
+                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+
+            }
         } else {
             // Fallback on earlier versions
         }
@@ -40,13 +51,14 @@ struct ContentView: View {
 struct PageView: View {
     @Binding var selection: Int
     let dataModel: [String]
+    @Binding var push: Bool
     var body: some View {
         if #available(iOS 14.0, *) {
             TabView(selection:$selection) {
                 ForEach(0..<dataModel.count) { i in
                     VStack {
                         HStack {
-                            ContentView1(selection: $selection)
+                            ContentView1(selection: $selection, push: $push)
                         }
                     }.tag(i)
                 }
@@ -155,19 +167,25 @@ struct ContentView1: View {
     @ObservedObject var viewModel: MovieViewModel = MovieViewModel()
     @State var isNavigate = false
     @Binding var selection: Int
+    @Binding var push: Bool
     var body: some View {
         GeometryReader{ geometry in
             CustomScrollView(width: geometry.size.width, height: geometry.size.height, handlePullToRefresh: {
                 self.pullToRefresh()
             }) {
-                SwiftUIList(model: self.viewModel, isNavigate: $isNavigate)
+                SwiftUIList(model: self.viewModel, isNavigate: $isNavigate, push: $push)
                     .background(SwiftUI.Color.white)
             }
         }.onAppear {
             viewModel.movies = []
-            viewModel.getMovies(selection) {
-                
+            if Reachability.isConnectedToNetwork() {
+                viewModel.getMovies(selection) {
+                    
+                }
+            } else {
+                viewModel.fetchFromLocalDB(selection: selection)
             }
+            
         }
     }
     
@@ -181,6 +199,7 @@ struct ContentView1: View {
 struct SwiftUIList: View {
     @ObservedObject var model: MovieViewModel
     @Binding var isNavigate: Bool
+    @Binding var push: Bool
     var body: some View {
        
         if #available(iOS 14.0, *) {
@@ -203,7 +222,7 @@ struct SwiftUIList: View {
                 self.setupMethod()
             })
             .onTapGesture {
-                self.isNavigate = true
+                self.push = true
             }
         } else {
             // Fallback on earlier versions
