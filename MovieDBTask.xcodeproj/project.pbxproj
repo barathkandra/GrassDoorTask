@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180CAB71282F5AC5003BFA0B /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CAB70282F5AC5003BFA0B /* VideoPlayerView.swift */; };
+		180CAB73282F5CA6003BFA0B /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CAB72282F5CA6003BFA0B /* MovieDetailsViewModel.swift */; };
+		180CAB75282F6088003BFA0B /* MovieDetailsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CAB74282F6088003BFA0B /* MovieDetailsDataModel.swift */; };
+		180CAB77282F6230003BFA0B /* Pexels Sea.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 180CAB76282F6230003BFA0B /* Pexels Sea.mp4 */; };
 		18102FC9282EA0BF000FBA7B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18102FC8282EA0BF000FBA7B /* CoreDataStack.swift */; };
 		18102FCB282EA0C9000FBA7B /* CoreDataBaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18102FCA282EA0C9000FBA7B /* CoreDataBaseHandler.swift */; };
 		18102FE9282EB361000FBA7B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18102FE8282EB361000FBA7B /* Reachability.swift */; };
 		18102FF2282EB712000FBA7B /* MovieItems+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18102FF0282EB712000FBA7B /* MovieItems+CoreDataClass.swift */; };
 		18102FF3282EB712000FBA7B /* MovieItems+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18102FF1282EB712000FBA7B /* MovieItems+CoreDataProperties.swift */; };
-		18103002282EBC26000FBA7B /* GrassDoorNewDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18102FED282EB6AE000FBA7B /* GrassDoorNewDB.xcdatamodeld */; };
 		F821D734282E44000008AD1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821D733282E44000008AD1E /* AppDelegate.swift */; };
 		F821D736282E44000008AD1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821D735282E44000008AD1E /* SceneDelegate.swift */; };
 		F821D738282E44000008AD1E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821D737282E44000008AD1E /* HomeView.swift */; };
@@ -50,6 +53,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180CAB70282F5AC5003BFA0B /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		180CAB72282F5CA6003BFA0B /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
+		180CAB74282F6088003BFA0B /* MovieDetailsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsDataModel.swift; sourceTree = "<group>"; };
+		180CAB76282F6230003BFA0B /* Pexels Sea.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pexels Sea.mp4"; sourceTree = "<group>"; };
 		18102FC8282EA0BF000FBA7B /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		18102FCA282EA0C9000FBA7B /* CoreDataBaseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataBaseHandler.swift; sourceTree = "<group>"; };
 		18102FE8282EB361000FBA7B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -121,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				F821D763282E44500008AD1E /* MovieListDataModel.swift */,
+				180CAB74282F6088003BFA0B /* MovieDetailsDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 			children = (
 				18102FF0282EB712000FBA7B /* MovieItems+CoreDataClass.swift */,
 				18102FF1282EB712000FBA7B /* MovieItems+CoreDataProperties.swift */,
+				180CAB76282F6230003BFA0B /* Pexels Sea.mp4 */,
 				F821D732282E44000008AD1E /* MovieDBTask */,
 				F821D749282E44020008AD1E /* MovieDBTaskTests */,
 				F821D754282E44020008AD1E /* MovieDBTaskUITests */,
@@ -173,6 +182,8 @@
 				F821D735282E44000008AD1E /* SceneDelegate.swift */,
 				F821D737282E44000008AD1E /* HomeView.swift */,
 				F821D774282E60B00008AD1E /* MovieDetailsView.swift */,
+				180CAB72282F5CA6003BFA0B /* MovieDetailsViewModel.swift */,
+				180CAB70282F5AC5003BFA0B /* VideoPlayerView.swift */,
 				F821D765282E447F0008AD1E /* MovieViewModel.swift */,
 				F821D76E282E53100008AD1E /* ImageView.swift */,
 				18102FC6282EA06A000FBA7B /* Network */,
@@ -319,6 +330,7 @@
 				F821D740282E44010008AD1E /* LaunchScreen.storyboard in Resources */,
 				F821D73D282E44010008AD1E /* Preview Assets.xcassets in Resources */,
 				F821D73A282E44010008AD1E /* Assets.xcassets in Resources */,
+				180CAB77282F6230003BFA0B /* Pexels Sea.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,13 +355,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18103002282EBC26000FBA7B /* GrassDoorNewDB.xcdatamodeld in Sources */,
 				F821D734282E44000008AD1E /* AppDelegate.swift in Sources */,
 				F821D736282E44000008AD1E /* SceneDelegate.swift in Sources */,
 				18102FCB282EA0C9000FBA7B /* CoreDataBaseHandler.swift in Sources */,
 				F821D773282E5C0C0008AD1E /* Utilities.swift in Sources */,
 				F821D76D282E52770008AD1E /* ImageDownloader.swift in Sources */,
+				180CAB71282F5AC5003BFA0B /* VideoPlayerView.swift in Sources */,
 				18102FE9282EB361000FBA7B /* Reachability.swift in Sources */,
+				180CAB75282F6088003BFA0B /* MovieDetailsDataModel.swift in Sources */,
+				180CAB73282F5CA6003BFA0B /* MovieDetailsViewModel.swift in Sources */,
 				F821D764282E44500008AD1E /* MovieListDataModel.swift in Sources */,
 				F821D771282E57BF0008AD1E /* RandomAccess+Extensions.swift in Sources */,
 				F821D775282E60B00008AD1E /* MovieDetailsView.swift in Sources */,
