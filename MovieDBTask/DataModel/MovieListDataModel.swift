@@ -22,11 +22,12 @@ struct Movie: Codable, Identifiable {
     let title: String
     let date: String
     let imagePath: String
-    
+    let description: String
     enum CodingKeys: String, CodingKey {
         case movieId = "id"
         case title
         case date = "release_date"
         case imagePath = "poster_path"
+        case description = "overview"
     }
 }

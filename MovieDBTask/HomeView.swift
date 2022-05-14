@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @State private var selection = 0 //selected page
     let dataModel = ["Popular", "Top Rating"]
+    @State var selectedItem: Movie = Movie(movieId: 0, title: "", date: "", imagePath: "", description: "")
     
     var body: some View {
         if #available(iOS 14.0, *) {
@@ -30,7 +31,7 @@ struct ContentView: View {
                     })
                     //Page View
                     LazyHStack {
-                        PageView(selection: $selection, dataModel: dataModel, push: $push)
+                        PageView(selection: $selection, selectedItem: $selectedItem, dataModel: dataModel, push: $push)
                     }
                 }.onChange(of: selection, perform: { value in
                  
@@ -39,7 +40,7 @@ struct ContentView: View {
             }
             
             if push {
-                MovieDetailsView(push: $push)
+                MovieDetailsView(push: $push, movieDetails: selectedItem)
                     .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
 
             }
@@ -50,6 +51,7 @@ struct ContentView: View {
 }
 struct PageView: View {
     @Binding var selection: Int
+    @Binding var selectedItem: Movie
     let dataModel: [String]
     @Binding var push: Bool
     var body: some View {
@@ -58,7 +60,7 @@ struct PageView: View {
                 ForEach(0..<dataModel.count) { i in
                     VStack {
                         HStack {
-                            ContentView1(selection: $selection, push: $push)
+                            ContentView1(selection: $selection, push: $push, selectedItem: $selectedItem)
                         }
                     }.tag(i)
                 }
@@ -168,12 +170,13 @@ struct ContentView1: View {
     @State var isNavigate = false
     @Binding var selection: Int
     @Binding var push: Bool
+    @Binding var selectedItem: Movie
     var body: some View {
         GeometryReader{ geometry in
             CustomScrollView(width: geometry.size.width, height: geometry.size.height, handlePullToRefresh: {
                 self.pullToRefresh()
             }) {
-                SwiftUIList(model: self.viewModel, isNavigate: $isNavigate, push: $push)
+                SwiftUIList(model: self.viewModel, isNavigate: $isNavigate, push: $push, selectedItem: $selectedItem)
                     .background(SwiftUI.Color.white)
             }
         }.onAppear {
@@ -200,6 +203,7 @@ struct SwiftUIList: View {
     @ObservedObject var model: MovieViewModel
     @Binding var isNavigate: Bool
     @Binding var push: Bool
+    @Binding var selectedItem: Movie
     var body: some View {
        
         if #available(iOS 14.0, *) {
@@ -214,16 +218,17 @@ struct SwiftUIList: View {
                         .onAppear {
                             //                        self.listFeedItemAppears(movie)
                         }
+                }.onTapGesture {
+                    self.selectedItem = movie
+                    self.push = true
                 }
-            }.listStyle(SidebarListStyle())
+            }
+            .listStyle(SidebarListStyle())
             .background(SwiftUI.Color.white)
             .padding(.bottom,40)
             .onAppear(perform: {
                 self.setupMethod()
             })
-            .onTapGesture {
-                self.push = true
-            }
         } else {
             // Fallback on earlier versions
         }
